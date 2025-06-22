@@ -27,3 +27,81 @@
 ---
 
 ## 🗂️ Project Structure# TaskTitans
+
+tasktitans/
+├── bot.py                         # Telegram listener + agent trigger
+├── my_tools.py                    # LangChain-compatible tools (email, WhatsApp, Telegram, DB, etc.)
+├── .env                           # Env vars for credentials and config
+├── Dockerfile                     # Container for Telegram agent
+├── docker-compose.telegram.yml    # Docker Compose for bot + services
+└── README.md                      # You’re here
+
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-org/tasktitans.git
+cd tasktitans
+```
+
+### 2. Prepare .env file
+
+# Telegram Bot
+TELEGRAM_BOT_TOKEN=...
+
+# WhatsApp
+ULTRAMSG_INSTANCE_ID=...
+ULTRAMSG_TOKEN=...
+
+# Email
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USERNAME=...
+SMTP_PASSWORD=...
+
+# MySQL
+DB_USER=ltgenai
+DB_PASSWORD=rootroot
+DB_HOST=studentsdb
+DB_PORT=3306
+DB_NAME=genaideveloper
+
+### 3. Start the containers
+
+```bash
+docker compose -f docker-compose.telegram.yml up -d
+```
+
+
+### 💬 Example Commands (in Telegram Group)
+
+```bash
+
+/watch RELIANCE below 2800        → Alert if stock drops below ₹2800
+/remove RELIANCE                  → Remove stock alert
+Send WhatsApp to +447911123456: Hi! Meeting at 6PM
+Send email to user@example.com with subject "Reminder" and message "Project due today"
+What are the tourist attractions in Paris?
+What is the cheapest petrol in Harlow?
+Get student emails from database
+```
+
+### 🤖 Name Origin
+
+TaskTitans – because it empowers users to command complex task automations like a Titan from a simple messaging interface 💪📱
+
+
+### 🤝 Contributions
+
+We welcome contributions for new tools, agent logic improvements, or cool ideas! Just fork the repo and submit a PR or raise an issue.
+
+⸻
+
+### 📜 License
+
+This project is licensed under the MIT License.
+
