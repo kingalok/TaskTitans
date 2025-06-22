@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   telegram-agent:
-    build: .
+    build: ../telegram_langchain_tool
     container_name: telegram_agent
     env_file: .env
     volumes:
