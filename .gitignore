@@ -47,3 +47,7 @@ build/
 *.bak
 *.tmp
 *.sqlite
+
+# My Files
+alok*
+*alok
