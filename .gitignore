@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.egg-info/
+*.log
+
+# Environments
+.env
+.venv/
+venv/
+env/
+ENV/
+
+# VS Code / IDEs
+.vscode/
+.idea/
+*.swp
+
+# Docker
+*.pid
+docker-compose.override.yml
+docker-compose.*.local.yml
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
+*.egg
+*.whl
+
+# Logs & Dumps
+*.log
+*.out
+*.err
+*.dump
+
+# Misc
+*.bak
+*.tmp
+*.sqlite
