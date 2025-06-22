@@ -29,7 +29,8 @@ from langchain_tavily import TavilySearch
 import smtplib
 import requests
 
-
+# stock market
+import yfinance as yf
 
 load_dotenv()
 
@@ -117,7 +118,32 @@ tavily_search_tool = TavilySearch(
 )
 
 
-#
+# Stock Market
+
+@tool("get_stock_price", return_direct=True)
+def get_stock_price(ticker: str) -> str:
+    """
+    Get the latest stock price for a given stock ticker.
+
+    Args:
+        ticker (str): The stock symbol (e.g., RELIANCE.BO for BSE, INFY.BO)
+
+    Returns:
+        str: Current price and details of the stock.
+    """
+    try:
+        stock = yf.Ticker(ticker)
+        data = stock.history(period="1d")
+        if data.empty:
+            return f"⚠️ No data found for ticker: {ticker}"
+
+        latest_price = data['Close'].iloc[-1]
+        return f"📈 {ticker} latest closing price: ₹{latest_price:.2f}"
+    except Exception as e:
+        return f"❌ Failed to fetch price for {ticker}: {str(e)}"
+
+
+
 #WhatsApp Message
 
 
@@ -187,7 +213,8 @@ tools = [
     send_email,
     tavily_search_tool,
     send_whatsapp_message,
-    send_telegram_message
+    send_telegram_message,
+    get_stock_price
 ]
 
 agent_executor = create_react_agent(llm, toolkit.get_tools()+ tools)
