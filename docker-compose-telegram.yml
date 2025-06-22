@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  telegram-agent:
+    build: .
+    container_name: telegram_agent
+    env_file: .env
+    volumes:
+      - ./alok-genai-test.json:/app/alok-genai-test.json:ro
+    networks:
+      - crm-net
+
+networks:
+  crm-net:
+    external: true
+    name: infra_crm-net
