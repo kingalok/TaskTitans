@@ -28,6 +28,7 @@
 
 ## 🗂️ Project Structure# TaskTitans
 
+```
 tasktitans/
 ├── bot.py                         # Telegram listener + agent trigger
 ├── my_tools.py                    # LangChain-compatible tools (email, WhatsApp, Telegram, DB, etc.)
@@ -35,7 +36,7 @@ tasktitans/
 ├── Dockerfile                     # Container for Telegram agent
 ├── docker-compose.telegram.yml    # Docker Compose for bot + services
 └── README.md                      # You’re here
-
+```
 
 ---
 
@@ -50,22 +51,22 @@ cd tasktitans
 
 ### 2. Prepare .env file
 
-# Telegram Bot
+### Telegram Bot
 TELEGRAM_BOT_TOKEN=...
 
-# WhatsApp
+### WhatsApp
 ULTRAMSG_INSTANCE_ID=...
 ULTRAMSG_TOKEN=...
 
-# Email
+### Email
 SMTP_HOST=smtp.example.com
 SMTP_PORT=587
 SMTP_USERNAME=...
 SMTP_PASSWORD=...
 
-# MySQL
+### MySQL
 DB_USER=ltgenai
-DB_PASSWORD=rootroot
+DB_PASSWORD=xxx
 DB_HOST=studentsdb
 DB_PORT=3306
 DB_NAME=genaideveloper
