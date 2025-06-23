@@ -32,6 +32,9 @@ import requests
 # stock market
 import yfinance as yf
 
+# weather
+from langchain_community.utilities import OpenWeatherMapAPIWrapper
+
 load_dotenv()
 
 model_id="gemini-2.5-flash-preview-05-20"
@@ -209,12 +212,33 @@ def send_telegram_message(chat_id: str, message: str) -> str:
     except Exception as e:
         return f"Failed to send message: {str(e)}"
 
+# Weather
+
+weather_api = OpenWeatherMapAPIWrapper()
+# tools = [weather.run]
+
+
+@tool("weather", return_direct=True)
+def get_weather(location: str) -> str:
+    """
+    Gets the current weather for a given location using OpenWeatherMap.
+    
+    Args:
+        location (str): Name of the city or place (e.g., Delhi, London).
+    
+    Returns:
+        str: Weather description with temperature.
+    """
+    return weather_api.run(location)
+
+
 tools = [
     send_email,
     tavily_search_tool,
     send_whatsapp_message,
     send_telegram_message,
-    get_stock_price
+    get_stock_price,
+    get_weather
 ]
 
 agent_executor = create_react_agent(llm, toolkit.get_tools()+ tools)
