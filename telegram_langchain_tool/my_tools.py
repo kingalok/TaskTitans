@@ -146,6 +146,34 @@ def get_stock_price(ticker: str) -> str:
         return f"❌ Failed to fetch price for {ticker}: {str(e)}"
 
 
+# NAV price of Mutual Funds
+@tool("get_mutual_fund_nav_groww", return_direct=True)
+def get_mutual_fund_nav_groww(fund_slug: str) -> str:
+    """
+    Fetches the latest NAV from Groww for a mutual fund.
+    
+    Args:
+        fund_slug (str): The Groww URL slug, e.g., 'tata-nifty-midcap-150-momentum-50-index-fund-direct-growth'
+    
+    Returns:
+        str: NAV or error message
+    """
+    try:
+        url = f"https://groww.in/mutual-funds/{fund_slug}"
+        headers = {"User-Agent": "Mozilla/5.0"}
+        response = requests.get(url, headers=headers)
+        if response.status_code != 200:
+            return f"❌ Failed to fetch: {url}"
+
+        # Regex to find the NAV value (₹123.45 style)
+        match = re.search(r'₹\s?([\d,]+\.\d+)', response.text)
+        if match:
+            nav = match.group(1)
+            return f"📈 NAV for {fund_slug.replace('-', ' ').title()}: ₹{nav}\n🔗 {url}"
+        else:
+            return f"⚠️ NAV not found on the page."
+    except Exception as e:
+        return f"❌ Error: {e}"
 
 #WhatsApp Message
 
@@ -238,6 +266,7 @@ tools = [
     send_whatsapp_message,
     send_telegram_message,
     get_stock_price,
+    get_mutual_fund_nav_groww,
     get_weather
 ]
 
