@@ -1,18 +1,19 @@
 # 🛠️ TaskTitans - Command Your Tasks Like a Titan!
 
-**TaskTitans** is an intelligent, modular command interface built on top of Telegram + LangChain agents. It enables natural language task execution through Telegram by integrating with tools like WhatsApp, email, MySQL, stock market alerts, travel guides, fuel price lookups, and more — all wrapped in a Dockerized agent.
+**TaskTitans** is an intelligent, modular command interface built on top of Telegram + LangChain agents. It enables natural language task execution through Telegram by integrating with tools like WhatsApp, email, MySQL, weather, stock market alerts, travel guides, fuel price lookups, and more — all wrapped in a Dockerized agent.
 
 ---
 
 ## 🚀 Features
 
-- 📬 Send **WhatsApp** or **Telegram** messages via simple commands
-- 📧 Trigger **email alerts** via SMTP
-- 📚 Query and interact with **MySQL databases**
-- 📉 Monitor **BSE stock prices** and get alerts when they drop below a threshold
-- 🛢️ Find **cheapest petrol prices** nearby (UK only – experimental)
+- 📬 Send **WhatsApp** or **Telegram** messages via simple prompts
+- 📧 Trigger **email notifications** with subject and message
+- 🗃️ Query and interact with a **MySQL database**
+- 📉 Get **BSE stock prices** or set threshold alerts
+- 🌦️ Check **weather** for any city in real-time
+- 🔍 Perform **web search** using **Tavily Search**
 - 🧭 Discover **tourist attractions** in any city
-- 🛒 Plan future tools: grocery deals, morning assistant, Alexa, Teams integration
+- 🛢️ Find **cheapest petrol prices** nearby (UK only – experimental)
 
 ---
 
@@ -22,6 +23,7 @@
 - **Telegram Bot API** & **Ultramsg WhatsApp API**
 - **SQLAlchemy** + **MySQL Connector**
 - **Tavily**, **Travalyst**, and custom LangChain tools
+- **Weather**, **OpenWeatherMap**
 - **Docker**, **Docker Compose**
 
 ---
