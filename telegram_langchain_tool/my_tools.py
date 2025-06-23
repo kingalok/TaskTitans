@@ -1,6 +1,7 @@
 
 # Environment and OS
 import os
+import re
 from dotenv import load_dotenv
 
 # Database connectivity
@@ -150,13 +151,27 @@ def get_stock_price(ticker: str) -> str:
 @tool("get_mutual_fund_nav_groww", return_direct=True)
 def get_mutual_fund_nav_groww(fund_slug: str) -> str:
     """
-    Fetches the latest NAV from Groww for a mutual fund.
-    
+    Retrieve the latest NAV (Net Asset Value) of a mutual fund from Groww.
+
+    This tool fetches the current NAV of any mutual fund listed on Groww using its URL slug.
+
     Args:
-        fund_slug (str): The Groww URL slug, e.g., 'tata-nifty-midcap-150-momentum-50-index-fund-direct-growth'
-    
+        fund_slug (str): The Groww mutual fund slug, which is the unique identifier found in the fund's Groww URL.
+                        Example:
+                        For the fund "Tata Nifty Midcap 150 Momentum 50 Index Fund Direct Growth", 
+                        the slug is "tata-nifty-midcap-150-momentum-50-index-fund-direct-growth".
+
     Returns:
-        str: NAV or error message
+        str: A formatted message containing the latest NAV value.
+
+    Example usage:
+        Input: "tata-nifty-midcap-150-momentum-50-index-fund-direct-growth"
+        Output: "📈 NAV for Tata Nifty Midcap 150 Momentum 50 Index Fund Direct Growth: ₹123.45
+    
+    Notes:
+        - This tool only supports funds listed on Groww.in.
+        - Make sure to provide the correct slug to avoid fetch errors.
+
     """
     try:
         url = f"https://groww.in/mutual-funds/{fund_slug}"
