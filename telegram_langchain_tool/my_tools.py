@@ -87,6 +87,39 @@ engine = create_engine(connection_string, echo=True)
 database = SQLDatabase(engine)
 toolkit = SQLDatabaseToolkit(db=database, llm=llm)
 
+# Update Database
+@tool("run_sql_write_query", return_direct=True)
+def run_sql_write_query(query: str) -> str:
+    """
+    Executes a general SQL command for data modification (INSERT, UPDATE, DELETE) on the connected MySQL database.
+
+    ⚠️ WARNING: This tool should be used only for write operations. SELECT queries should use read-only tools.
+
+    Args:
+        query (str): A valid SQL command like:
+                     - "INSERT INTO stock (slug, nav_price) VALUES ('fund-name', 123.45)"
+                     - "UPDATE stock SET nav_price = 130.55 WHERE slug = 'fund-name'"
+                     - "DELETE FROM stock WHERE slug = 'fund-name'"
+
+    Returns:
+        str: Status message indicating success or error.
+    """
+    try:
+        if not re.match(r"^\s*(INSERT|UPDATE|DELETE)", query, re.IGNORECASE):
+            return "❌ Only INSERT, UPDATE, or DELETE statements are allowed."
+
+        conn = mysql.connector.connect(**config)
+        cursor = conn.cursor()
+        cursor.execute(query)
+        conn.commit()
+        affected_rows = cursor.rowcount
+        cursor.close()
+        conn.close()
+        return f"✅ Query executed successfully. Rows affected: {affected_rows}"
+    except Exception as e:
+        return f"❌ Error executing query: {str(e)}"
+    
+    
 # Sending Email
 @tool("email_sender", parse_docstring=True, return_direct=True)
 def send_email(receiver:str, subject:str, message:str) -> None:
@@ -282,7 +315,8 @@ tools = [
     send_telegram_message,
     get_stock_price,
     get_mutual_fund_nav_groww,
-    get_weather
+    get_weather,
+    run_sql_write_query
 ]
 
 agent_executor = create_react_agent(llm, toolkit.get_tools()+ tools)
