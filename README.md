@@ -1,6 +1,6 @@
 # 🛠️ TaskTitans - Command Your Tasks Like a Titan!
 
-**TaskTitans** is an intelligent, modular command interface built on top of Telegram + LangChain agents. It enables natural language task execution through Telegram by integrating with tools like WhatsApp, email, MySQL, weather, stock market alerts, travel guides, fuel price lookups, and more — all wrapped in a Dockerized agent.
+**TaskTitans** is an intelligent, modular command interface built on top of Telegram + LangChain agents. It enables natural language task execution through Telegram by integrating with multiple tools like WhatsApp, email, MySQL, weather, stock market alerts, travel guides, fuel price lookups, Jira, and more — all wrapped in a Dockerized agent running in your laptop.
 
 ---
 
@@ -14,6 +14,36 @@
 - 🔍 Perform **web search** using **Tavily Search**
 - 🧭 Discover **tourist attractions** in any city
 - 🛢️ Find **cheapest petrol prices** nearby (UK only – experimental)
+
+## 🚀 Features
+
+- 📬 Send WhatsApp or Telegram messages
+Instantly message contacts or groups using simple prompts.
+
+- 📧 Trigger email notifications
+Fire off emails with custom subjects and messages.
+
+- 🗃️ Query and interact with MySQL databases
+Retrieve, update, or manage your data with ease.
+
+- 📉 Get BSE stock prices & set threshold alerts
+Monitor stocks and receive instant alerts on price movements.
+
+- 🌦️ Check real-time weather
+Get up-to-the-minute forecasts for any city.
+
+- 🔍 Perform web searches (Tavily Search)
+Search the web for anything, directly from chat.
+
+- 🧭 Discover tourist attractions
+Find must-see destinations in any city.
+
+- 🛢️ Find the cheapest petrol prices nearby (UK only – experimental)
+Locate the best fuel deals around you.
+
+- 🗂️ Jira management
+Create, update, and track Jira issues or tickets—streamline your workflow!
+
 
 ---
 
